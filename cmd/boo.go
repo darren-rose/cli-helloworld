@@ -26,7 +26,11 @@ var booCmd = &cobra.Command{
 	Use:   "boo",
 	Short: "boo command",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("boo")
+		toggle, _ := cmd.Flags().GetBool("toggle")
+		if toggle {
+			fmt.Println("toggle")
+		}
+		fmt.Println("boo", toggle)
 	},
 }
 
@@ -41,5 +45,5 @@ func init() {
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// booCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	booCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
